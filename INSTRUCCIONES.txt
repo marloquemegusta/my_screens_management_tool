@@ -1,0 +1,57 @@
+======================================================================
+                 CONTROL AUTOMATIZADO DE PANTALLA CRT
+======================================================================
+
+Todos los scripts de esta carpeta configuran automáticamente las pantallas:
+  [CRT (Izquierda)] -> [Dell LCD (Centro, Principal)] -> [Portátil (Derecha)]
+
+----------------------------------------------------------------------
+A. ENCENDER / APAGAR PANTALLAS (MODO SUSPENSIÓN / AHORRO)
+----------------------------------------------------------------------
+
+1. Activar_CRT.bat
+   - Enciende la CRT (si estaba en modo suspensión/desactivada en Windows).
+   - Inicia directamente en el modo nativo seguro: 1024 x 768 @ 85 Hz (o 75 Hz),
+     evitando cualquier error de "Frequency out of range".
+   - Coloca la CRT a la izquierda del Dell LCD automáticamente.
+
+2. Desactivar_CRT.bat
+   - Corta completamente la señal de vídeo hacia el adaptador del CRT.
+   - La pantalla CRT detecta la falta de señal y entra SOLA en modo suspensión /
+     ahorro de energía (led naranja / relé apagado) sin apagar el PC.
+   - El escritorio se reajusta automáticamente a [Dell (Principal) -> Portátil].
+
+3. Alternar_CRT.bat
+   - Interruptor tipo palanca (Toggle): Si la CRT está encendida la apaga;
+     si está apagada la enciende a 1024x768 @ 85 Hz.
+
+4. Solo_CRT.bat
+   - Apaga el Dell y el Portátil, dejando ÚNICAMENTE la CRT encendida.
+   - Los otros dos monitores entran en suspensión/ahorro. Ideal para juegos retro,
+     emuladores o ver contenido exclusivo en CRT.
+
+5. Solo_Dell.bat
+   - Apaga la CRT y el Portátil, dejando solo el monitor Dell encendido.
+
+6. Solo_Portatil.bat
+   - Apaga la CRT y el monitor Dell, dejando ÚNICAMENTE la pantalla del portátil.
+   - Ambos monitores externos entran en suspensión / ahorro de energía.
+
+7. Restaurar_Monitores.bat
+   - Vuelve a encender TODAS las pantallas (si alguna estaba apagada) y restablece
+     el orden exacto: [CRT (Izquierda)] -> [Dell (Centro, Principal)] -> [Portátil].
+
+----------------------------------------------------------------------
+B. PERFILES DE RESOLUCIÓN Y HERCIOS (DOBLE CLIC)
+----------------------------------------------------------------------
+* Nota: Si la CRT estaba apagada, ejecutar cualquiera de estos perfiles la
+  encenderá automáticamente y le aplicará la resolución deseada.
+
+- Perfil_1024x768_85Hz.bat   : Modo nativo recomendado (85 Hz súper estables).
+- Perfil_1024x768_75Hz.bat   : Modo 1024x768 estándar a 75 Hz.
+- Perfil_1280x960_85Hz.bat   : Modo 1280x960 a 85 Hz (gran nitidez).
+- Perfil_1280x960_75Hz.bat   : Modo 1280x960 estándar a 75 Hz.
+- Perfil_1600x1200_75Hz.bat  : Máxima resolución (75 Hz).
+- Perfil_640x480_150Hz.bat   : Máximos hercios soportados por el tubo (150 Hz).
+- Perfil_640x480_75Hz.bat    : Modo 640x480 compatible a 75 Hz.
+======================================================================

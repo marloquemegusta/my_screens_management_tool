@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+   <ViewDefinitions>
+      <View>
+         <Name>DisplayInfo</Name>
+         <ViewSelectedBy>
+            <TypeName>MartinGC94.DisplayConfig.API.DisplayInfo</TypeName>
+         </ViewSelectedBy>
+         <TableControl>
+            <TableHeaders>
+
+               <TableColumnHeader>
+                  <Label>DisplayId</Label>
+                  <Width>10</Width>
+                  <Alignment>right</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>DisplayName</Label>
+                  <Width>15</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>Active</Label>
+                  <Width>7</Width>
+                  <Alignment>right</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>Primary</Label>
+                  <Width>8</Width>
+                  <Alignment>right</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>Position</Label>
+                  <Width>11</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>Mode</Label>
+                  <Width>20</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>ConnectionType</Label>
+                  <Width>15</Width>
+                  <Alignment>right</Alignment>
+               </TableColumnHeader>
+
+            </TableHeaders>
+            <TableRowEntries>
+               <TableRowEntry>
+                  <TableColumnItems>
+
+                     <TableColumnItem>
+                        <PropertyName>DisplayId</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>DisplayName</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>Active</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>Primary</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>Position</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>Mode</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>ConnectionType</PropertyName>
+                     </TableColumnItem>
+
+                  </TableColumnItems>
+               </TableRowEntry>
+            </TableRowEntries>
+         </TableControl>
+      </View>
+      <View>
+         <Name>PathSourceInfo</Name>
+         <ViewSelectedBy>
+            <TypeName>MartinGC94.DisplayConfig.Native.Structs.DISPLAYCONFIG_PATH_SOURCE_INFO</TypeName>
+         </ViewSelectedBy>
+         <TableControl>
+            <TableHeaders>
+
+               <TableColumnHeader>
+                  <Label>CloneGroupId</Label>
+                  <Width>13</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>SourceModeInfoIdx</Label>
+                  <Width>18</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>adapterId</Label>
+                  <Width>10</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>id</Label>
+                  <Width>2</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>modeInfoIdx</Label>
+                  <Width>12</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>statusFlags</Label>
+                  <Width>12</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+            </TableHeaders>
+            <TableRowEntries>
+               <TableRowEntry>
+                  <TableColumnItems>
+
+                     <TableColumnItem>
+                        <PropertyName>CloneGroupId</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>SourceModeInfoIdx</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>adapterId</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>id</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>modeInfoIdx</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>statusFlags</PropertyName>
+                     </TableColumnItem>
+
+                  </TableColumnItems>
+               </TableRowEntry>
+            </TableRowEntries>
+         </TableControl>
+      </View>
+      <View>
+         <Name>PathTargetInfo</Name>
+         <ViewSelectedBy>
+            <TypeName>MartinGC94.DisplayConfig.Native.Structs.DISPLAYCONFIG_PATH_TARGET_INFO</TypeName>
+         </ViewSelectedBy>
+         <TableControl>
+            <TableHeaders>
+
+               <TableColumnHeader>
+                  <Label>adapterId</Label>
+                  <Width>10</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>id</Label>
+                  <Width>10</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>modeInfoIdx</Label>
+                  <Width>12</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>targetAvailable</Label>
+                  <Width>16</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>statusFlags</Label>
+                  <Width>28</Width>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+               <TableColumnHeader>
+                  <Label>outputTechnology</Label>
+                  <Alignment>left</Alignment>
+               </TableColumnHeader>
+
+            </TableHeaders>
+            <TableRowEntries>
+               <TableRowEntry>
+                  <TableColumnItems>
+
+                     <TableColumnItem>
+                        <PropertyName>adapterId</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>id</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>modeInfoIdx</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>targetAvailable</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>statusFlags</PropertyName>
+                     </TableColumnItem>
+
+                     <TableColumnItem>
+                        <PropertyName>outputTechnology</PropertyName>
+                     </TableColumnItem>
+
+                  </TableColumnItems>
+               </TableRowEntry>
+            </TableRowEntries>
+         </TableControl>
+      </View>
+   </ViewDefinitions>
+</Configuration>

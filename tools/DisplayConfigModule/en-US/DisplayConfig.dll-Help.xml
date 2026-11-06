@@ -1,0 +1,2730 @@
+<?xml version="1.0" encoding="utf-8"?>
+<helpItems xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" schema="maml" xmlns="http://msh">
+  <command:command>
+    <command:details>
+      <command:name>Copy-DisplaySource</command:name>
+      <maml:description>
+        <maml:para>Clones 1 source display to 1 or more destination displays.</maml:para>
+      </maml:description>
+      <command:verb>Copy</command:verb>
+      <command:noun>DisplaySource</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Clones 1 source display to 1 or more destination displays. To stop cloning you can either change the display profile to anything other than `Clone`, or use `Enable-Display` Another way to clone displays without specifying a source is to use `Enable-Display` with the `-AsClone` switch.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Copy-DisplaySource</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>DestinationDisplayId</maml:name>
+          <maml:description>
+            <maml:para>The target display(s) to clone the source to.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The source display to clone output from.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Copy-DisplaySource</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>DestinationDisplayId</maml:name>
+          <maml:description>
+            <maml:para>The target display(s) to clone the source to.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The source display to clone output from.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>DestinationDisplayId</maml:name>
+        <maml:description>
+          <maml:para>The target display(s) to clone the source to.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayConfig</maml:name>
+        <maml:description>
+          <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The source display to clone output from.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DontSave</maml:name>
+        <maml:description>
+          <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Copy-DisplaySource -DisplayId 2 -DestinationDisplayId 1,3</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Clones the second display to displays 1 and 3.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Disable-Display</command:name>
+      <maml:description>
+        <maml:para>Removes a display from the active desktop.</maml:para>
+      </maml:description>
+      <command:verb>Disable</command:verb>
+      <command:noun>Display</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Removes a display from the active desktop.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Disable-Display</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) that should be disabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Disable-Display</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) that should be disabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayConfig</maml:name>
+        <maml:description>
+          <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display(s) that should be disabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Disable-Display -DisplayId 3</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Disables the third display.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Disable-DisplayAdvancedColor</command:name>
+      <maml:description>
+        <maml:para>Disables Advanced color AKA HDR on the specified display. This is the same as toggling the "Use HDR" switch in the display settings.</maml:para>
+      </maml:description>
+      <command:verb>Disable</command:verb>
+      <command:noun>DisplayAdvancedColor</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Disables Advanced color AKA HDR on the specified display. This is the same as toggling the "Use HDR" switch in the display settings.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Disable-DisplayAdvancedColor</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) where HDR should be disabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display(s) where HDR should be disabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Disable-DisplayAdvancedColor -DisplayId 3</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Disables HDR on the third display.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Disable-DisplayWCG</command:name>
+      <maml:description>
+        <maml:para>Disables Wide Color Gamut for the display. This is the same as toggling the "Automatically manage color for apps" switch in the display color profile settings.</maml:para>
+      </maml:description>
+      <command:verb>Disable</command:verb>
+      <command:noun>DisplayWCG</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Disables Wide Color Gamut for the display. This is the same as toggling the "Automatically manage color for apps" switch in the display color profile settings.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Disable-DisplayWCG</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display where WCG should be disabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display where WCG should be disabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Disable-DisplayWCG -DisplayId 3</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Disables Wide Color Gamut on the display AKA "Automatically manage color for apps".</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Enable-Display</command:name>
+      <maml:description>
+        <maml:para>Reenables a display, this is the same as picking "Extend desktop to this display" in the settings app.
+If the display is already active, but is used for display cloning then this will stop the cloning.</maml:para>
+      </maml:description>
+      <command:verb>Enable</command:verb>
+      <command:noun>Display</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Reenables a display, this is the same as picking "Extend desktop to this display" in the settings app. If the display is already active, but is used for display cloning then this will stop the cloning. The -AsClone switch can be used to set up a new clone group with the specified displays.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Enable-Display</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AsClone</maml:name>
+          <maml:description>
+            <maml:para>When specified, the specified displays are put into one clone group.
+This allows you to turn on displays and add them to a clone group in one go.
+You can use this over Copy-DisplaySource when you want to let Windows determine the best mode, rather than copying it from an existing display.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display to enable.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayIdToDisable</maml:name>
+          <maml:description>
+            <maml:para>The display to disable.
+This can be used to enable and disable 2 or more displays in one go which is equivalent to the "Show only on X" option in the display settings app.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg.
+2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>AsClone</maml:name>
+        <maml:description>
+          <maml:para>When specified, the specified displays are put into one clone group.
+This allows you to turn on displays and add them to a clone group in one go.
+You can use this over Copy-DisplaySource when you want to let Windows determine the best mode, rather than copying it from an existing display.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display to enable.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayIdToDisable</maml:name>
+        <maml:description>
+          <maml:para>The display to disable.
+This can be used to enable and disable 2 or more displays in one go which is equivalent to the "Show only on X" option in the display settings app.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg.
+2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Enable-Display -DisplayId 3</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Reenables the third display, adding it back to the desktop if it was previously turned off or used for cloning.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Enable-DisplayAdvancedColor</command:name>
+      <maml:description>
+        <maml:para>Enables Advanced color AKA HDR on the specified display. This is the same as toggling the "Use HDR" switch in the display settings.</maml:para>
+      </maml:description>
+      <command:verb>Enable</command:verb>
+      <command:noun>DisplayAdvancedColor</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Enables Advanced color AKA HDR on the specified display. This is the same as toggling the "Use HDR" switch in the display settings.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Enable-DisplayAdvancedColor</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display where HDR should be enabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display where HDR should be enabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Enable-DisplayAdvancedColor -DisplayId 3</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Enables HDR on display 3.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Enable-DisplayWCG</command:name>
+      <maml:description>
+        <maml:para>Enables Wide Color Gamut for the display. This is the same as toggling the "Automatically manage color for apps" switch in the display color profile settings.</maml:para>
+      </maml:description>
+      <command:verb>Enable</command:verb>
+      <command:noun>DisplayWCG</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Enables Wide Color Gamut for the display. This is the same as toggling the "Automatically manage color for apps" switch in the display color profile settings.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Enable-DisplayWCG</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display where WCG should be enabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display where WCG should be enabled.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Enable-DisplayWCG -DisplayId 3</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Enables Wide Color Gamut on the display AKA "Automatically manage color for apps".</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-DisplayColorInfo</command:name>
+      <maml:description>
+        <maml:para>Gets various color and HDR details about a display.</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>DisplayColorInfo</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Gets various color and HDR details about a display.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DisplayColorInfo</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display to get color data for.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display to get color data for.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.ColorInfo</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Get-DisplayColorInfo -DisplayId 3</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Gets color and HDR info for the third display.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-DisplayConfig</command:name>
+      <maml:description>
+        <maml:para>Gets the current display topology settings, which can then be exported or modified and later applied.</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>DisplayConfig</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Gets the current display topology settings, which can then be exported or modified and later applied. This can be combined with Export/Import-Clixml to save various topology profiles that can later be applied. Some commands in this module also supports modifying the topology settings so multiple settings can be applied at once, minimizing the amount of flickering that occurs whenever a setting is changed. The compatible commands can be found like this: `Get-Command -Module DisplayConfig -ParameterName DisplayConfig` Advanced users can also manually modify the path/mode settings before applying them.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DisplayConfig</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Flags</maml:name>
+          <maml:description>
+            <maml:para>Only for advanced users!
+By default, all paths are enumerated which can be a bit slow.
+To make things faster you can request info for only the active paths, or the current CCD database.
+Beware that if a display is disabled it may affect the displayIds assigned to each display, since the code no longer knows about all connected displays.
+More information can be found at: https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-querydisplayconfig#parameters</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.Native.Enums.DisplayConfigFlags</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>Flags</maml:name>
+        <maml:description>
+          <maml:para>Only for advanced users!
+By default, all paths are enumerated which can be a bit slow.
+To make things faster you can request info for only the active paths, or the current CCD database.
+Beware that if a display is disabled it may affect the displayIds assigned to each display, since the code no longer knows about all connected displays.
+More information can be found at: https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-querydisplayconfig#parameters</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.Native.Enums.DisplayConfigFlags</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Get-DisplayConfig | Export-Clixml -Path $HOME\TvProfile.xml</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Exports the current settings so they can later be used like this: `Import-Clixml $HOME\TvProfile.xml | Use-DisplayConfig -UpdateAdapterIds`</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Get-DisplayConfig | Disable-Display -DisplayId 3 | Set-DisplayRotation -DisplayId 1 -Rotation Rotate90 | Set-DisplayPrimary -DisplayId 2 | Use-DisplayConfig</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Changes various settings in the config, before applying them all at once.
+This reduces the flickering and the time it takes to change multiple settings.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-DisplayHDR</command:name>
+      <maml:description>
+        <maml:para>Gets global and display specific HDR settings.</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>DisplayHDR</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Gets global and display specific HDR settings.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DisplayHDR</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the displays to get HDR info from.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-DisplayHDR</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Global</maml:name>
+          <maml:description>
+            <maml:para>Specifies that the global HDR settings should be retrieved.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the displays to get HDR info from.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Global</maml:name>
+        <maml:description>
+          <maml:para>Specifies that the global HDR settings should be retrieved.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.HDRDisplayInfo</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.HDRGlobalInfo</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Get-DisplayHDR -Global</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>HDRPlaybackEnabled AutoHDREnabled
+------------------ --------------
+             False          False</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Lists global HDR settings.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-DisplayInfo</command:name>
+      <maml:description>
+        <maml:para>Gets various details about the connected displays. Information includes: Display ID, display model name, connection type, and more.</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>DisplayInfo</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Gets various details about the connected displays. Information includes: Display ID, display model name, connection type, and more.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DisplayInfo</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig to get displayinfo from.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the display(s) to get information about.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayConfig</maml:name>
+        <maml:description>
+          <maml:para>The displayConfig to get displayinfo from.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the display(s) to get information about.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayInfo</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Get-DisplayInfo</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Gets basic display info about all connected displays.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-DisplayProfile</command:name>
+      <maml:description>
+        <maml:para>Gets the current display profile (Windows key + P).</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>DisplayProfile</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Gets the current display profile (Windows key + P).</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DisplayProfile</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.TopologyProfile</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Get-DisplayProfile</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Gets the current display profile.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-DisplayScale</command:name>
+      <maml:description>
+        <maml:para>Gets information about the current, recommended and max DPI for the specified displays.</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>DisplayScale</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Gets information about the current, recommended and max DPI for the specified displays.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DisplayScale</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the displays to get the scaling information from.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the displays to get the scaling information from.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DpiScale</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Get-DisplayScale 1,2</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Retrieves the DPI scaling information for displays 1 and 2.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-DisplayColor</command:name>
+      <maml:description>
+        <maml:para>Configures various advanced color settings, such as toggling HDR and automatic color management, or setting the SDR white level.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>DisplayColor</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Configures various advanced color settings, such as toggling HDR and automatic color management, or setting the SDR white level.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayColor</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AdvancedColorActive</maml:name>
+          <maml:description>
+            <maml:para>Enables or disables Advanced colors in Windows (Umbrella term for HDR and Wide Color Gamut).
+This is equivalent to the commands Enable-DisplayAdvancedColor and Disable-DisplayAdvancedColor.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Boolean</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the display where the color settings should be modified.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>HDREnabled</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether or not HDR is enabled on the display. This is equivalent to the command Set-DisplayHDR -EnableHDR
+Specifies whether or not HDR is enabled on the display.
+This is equivalent to the command Set-DisplayHDR -EnableHDR</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Boolean</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>SDRWhiteLevel</maml:name>
+          <maml:description>
+            <maml:para>Sets the SDR white level for the specified displays.
+This is equivalent to the HDR/SDR slider in the settings app, and the command Set-DisplayHDR -SdrWhiteLevel.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>WideColorEnabled</maml:name>
+          <maml:description>
+            <maml:para>Sets the Wide Color Gamut state for the display.
+This is the same as toggling the "Automatically manage color for apps" switch in the display color profile settings.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Boolean</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>AdvancedColorActive</maml:name>
+        <maml:description>
+          <maml:para>Enables or disables Advanced colors in Windows (Umbrella term for HDR and Wide Color Gamut).
+This is equivalent to the commands Enable-DisplayAdvancedColor and Disable-DisplayAdvancedColor.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Boolean</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the display where the color settings should be modified.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>HDREnabled</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether or not HDR is enabled on the display. This is equivalent to the command Set-DisplayHDR -EnableHDR
+Specifies whether or not HDR is enabled on the display.
+This is equivalent to the command Set-DisplayHDR -EnableHDR</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Boolean</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>SDRWhiteLevel</maml:name>
+        <maml:description>
+          <maml:para>Sets the SDR white level for the specified displays.
+This is equivalent to the HDR/SDR slider in the settings app, and the command Set-DisplayHDR -SdrWhiteLevel.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.UInt32</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>WideColorEnabled</maml:name>
+        <maml:description>
+          <maml:para>Sets the Wide Color Gamut state for the display.
+This is the same as toggling the "Automatically manage color for apps" switch in the display color profile settings.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Boolean</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.UInt32</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>{{ Fill in the Description }}</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.Boolean</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>{{ Fill in the Description }}</maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <dev:name>System.UInt32</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>{{ Fill in the Description }}</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>Set-DisplayColor -DisplayId 1 -HDREnabled $true -SDRWhiteLevel 600</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>This enables HDR on display 1, and sets the SDR white level to 600.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-DisplayHDR</command:name>
+      <maml:description>
+        <maml:para>Manages global and display specific HDR settings.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>DisplayHDR</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Manages global and display specific HDR settings.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayHDR</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the displays where display specific settings should be applied.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>EnableHDR</maml:name>
+          <maml:description>
+            <maml:para>Enables/disables HDR on the specified display.
+This is the same as running `Enable-DisplayAdvancedColor` or `Disable-DisplayAdvancedColor`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>SdrWhiteLevel</maml:name>
+          <maml:description>
+            <maml:para>Sets the SDR white level for the specified displays.
+This is equivalent to the HDR/SDR slider in the settings app.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayHDR</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>EnableAutoHDR</maml:name>
+          <maml:description>
+            <maml:para>Enables/disables the auto HDR feature which tries to convert SDR content into HDR.
+This feature was introduced in Windows 11.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>EnableHDRPlayback</maml:name>
+          <maml:description>
+            <maml:para>Enables/disables the "Stream HDR-videos" option globally.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the displays where display specific settings should be applied.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>EnableAutoHDR</maml:name>
+        <maml:description>
+          <maml:para>Enables/disables the auto HDR feature which tries to convert SDR content into HDR.
+This feature was introduced in Windows 11.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>EnableHDR</maml:name>
+        <maml:description>
+          <maml:para>Enables/disables HDR on the specified display.
+This is the same as running `Enable-DisplayAdvancedColor` or `Disable-DisplayAdvancedColor`.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>EnableHDRPlayback</maml:name>
+        <maml:description>
+          <maml:para>Enables/disables the "Stream HDR-videos" option globally.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>SdrWhiteLevel</maml:name>
+        <maml:description>
+          <maml:para>Sets the SDR white level for the specified displays.
+This is equivalent to the HDR/SDR slider in the settings app.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.UInt32</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Set-DisplayHDR -DisplayId 3 -SdrWhiteLevel 3000 -EnableHDR</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Enables HDR and sets the Sdr white level to 3000</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-DisplayPosition</command:name>
+      <maml:description>
+        <maml:para>Changes the position of one or more displays.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>DisplayPosition</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Changes the position of one or more displays. This does not move displays that are already in the specified position so it may be necessary to combine this command with `Get-DisplayConfig` and run this multiple times to move the displays one by one.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayPosition</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AllowChanges</maml:name>
+          <maml:description>
+            <maml:para>Allow Windows to readjust positions to make the config work, in case of overlapping displays.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AsOffset</maml:name>
+          <maml:description>
+            <maml:para>Treat the specified positions as an offset of the current position.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display that should be moved.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>XPosition</maml:name>
+          <maml:description>
+            <maml:para>Specifies either the literal (default) or relative (when used with `-AsOffset`) X (horizontal) position where the display should be moved.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Int32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>YPosition</maml:name>
+          <maml:description>
+            <maml:para>Specifies either the literal (default) or relative (when used with `-AsOffset`) Y (vertical) position where the display should be moved.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayPosition</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AllowChanges</maml:name>
+          <maml:description>
+            <maml:para>Allow Windows to readjust positions to make the config work, in case of overlapping displays.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display that should be moved.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Position</maml:name>
+          <maml:description>
+            <maml:para>The position where the specified display should be placed, relative to the display specified with `-RelativeDisplayId`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.RelativePosition</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>RelativeDisplayId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the display that the `-Position` parameter refers to.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayPosition</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AllowChanges</maml:name>
+          <maml:description>
+            <maml:para>Allow Windows to readjust positions to make the config work, in case of overlapping displays.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>LeftToRightDisplayIds</maml:name>
+          <maml:description>
+            <maml:para>Places the specified displays side by side, placing the first display as far left as possible, the second display right next to it, and so on.
+Every active display needs to be specified.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayPosition</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AllowChanges</maml:name>
+          <maml:description>
+            <maml:para>Allow Windows to readjust positions to make the config work, in case of overlapping displays.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>SwapDisplay</maml:name>
+          <maml:description>
+            <maml:para>The displayIDs of the 2 displays whose position should be swapped.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg.
+2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>AllowChanges</maml:name>
+        <maml:description>
+          <maml:para>Allow Windows to readjust positions to make the config work, in case of overlapping displays.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>AsOffset</maml:name>
+        <maml:description>
+          <maml:para>Treat the specified positions as an offset of the current position.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayConfig</maml:name>
+        <maml:description>
+          <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display that should be moved.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DontSave</maml:name>
+        <maml:description>
+          <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LeftToRightDisplayIds</maml:name>
+        <maml:description>
+          <maml:para>Places the specified displays side by side, placing the first display as far left as possible, the second display right next to it, and so on.
+Every active display needs to be specified.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Position</maml:name>
+        <maml:description>
+          <maml:para>The position where the specified display should be placed, relative to the display specified with `-RelativeDisplayId`.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.RelativePosition</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>RelativeDisplayId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the display that the `-Position` parameter refers to.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>SwapDisplay</maml:name>
+        <maml:description>
+          <maml:para>The displayIDs of the 2 displays whose position should be swapped.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg.
+2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>XPosition</maml:name>
+        <maml:description>
+          <maml:para>Specifies either the literal (default) or relative (when used with `-AsOffset`) X (horizontal) position where the display should be moved.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Int32</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>YPosition</maml:name>
+        <maml:description>
+          <maml:para>Specifies either the literal (default) or relative (when used with `-AsOffset`) Y (vertical) position where the display should be moved.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Int32</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Set-DisplayPosition -LeftToRightDisplayIds 2,1,3</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Positions displays 1,2,3 side by side with 2 being all the way to the left, 1 being in the middle and 3 being all the way to the right.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Get-DisplayConfig | Set-DisplayPosition -DisplayId 1 -Position Above -RelativeDisplayId 2 | Set-DisplayPosition -DisplayId 3 -Position Above -RelativeDisplayId 1 | Use-DisplayConfig</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Displays 1,2,3 are currently side by side.
+This config stacks the displays on top of each other with 2 at the bottom, 1 in the middle and 3 at the top.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 3 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Set-DisplayPosition -DisplayId 3 -XPosition 0 -YPosition 100 -AsOffset</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Moves display 3 100 pixels down from its current position.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- Example 4 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Get-DisplayConfig | Set-DisplayPosition -DisplayId 1 -XPosition 2560 | Set-DisplayPosition -DisplayId 2 -XPosition 2560 | Use-DisplayConfig</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Moves a cloned display group of displays 1 and 2 to a new X position.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-DisplayPrimary</command:name>
+      <maml:description>
+        <maml:para>Sets the specified display as the primary display.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>DisplayPrimary</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Sets the specified display as the primary display.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayPrimary</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display that should be made primary.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayPrimary</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display that should be made primary.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayConfig</maml:name>
+        <maml:description>
+          <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display that should be made primary.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DontSave</maml:name>
+        <maml:description>
+          <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Set-DisplayPrimary -DisplayId 2</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Sets the second display as the primary display.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-DisplayProfile</command:name>
+      <maml:description>
+        <maml:para>Changes the active display profile. This works the same way the Windows key + P does.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>DisplayProfile</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Changes the active display profile. This works the same way the Windows key + P does.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayProfile</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Profile</maml:name>
+          <maml:description>
+            <maml:para>The profile to use.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.TopologyProfile</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>Profile</maml:name>
+        <maml:description>
+          <maml:para>The profile to use.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.TopologyProfile</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Set-DisplayProfile Clone</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Switches to the most recent clone configuration.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-DisplayRefreshRate</command:name>
+      <maml:description>
+        <maml:para>Changes the refresh rate of the specified display.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>DisplayRefreshRate</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Changes the refresh rate of the specified display.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayRefreshRate</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AllowChanges</maml:name>
+          <maml:description>
+            <maml:para>Allows Windows to slightly adjust the specified refresh rate so it matches the monitor.
+This is highly recommended because displays often require decimal numbers like "59.951" rather than round numbers like "60".</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) where the refresh rate should be changed.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>RefreshRate</maml:name>
+          <maml:description>
+            <maml:para>The refresh rate to set.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.Double</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayRefreshRate</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) where the refresh rate should be changed.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>RefreshRate</maml:name>
+          <maml:description>
+            <maml:para>The refresh rate to set.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.Double</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>AllowChanges</maml:name>
+        <maml:description>
+          <maml:para>Allows Windows to slightly adjust the specified refresh rate so it matches the monitor.
+This is highly recommended because displays often require decimal numbers like "59.951" rather than round numbers like "60".</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayConfig</maml:name>
+        <maml:description>
+          <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display(s) where the refresh rate should be changed.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DontSave</maml:name>
+        <maml:description>
+          <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>RefreshRate</maml:name>
+        <maml:description>
+          <maml:para>The refresh rate to set.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.Double</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Set-DisplayRefreshRate -DisplayId 2 -RefreshRate 165</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Sets the refresh rate to 165 Hz for display 2.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-DisplayResolution</command:name>
+      <maml:description>
+        <maml:para>Sets the resolution of the specified displays.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>DisplayResolution</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Sets the resolution of the specified displays.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayResolution</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AllowChanges</maml:name>
+          <maml:description>
+            <maml:para>Allows Windows to slightly adjust the mode (resolution and refresh rate) this can be necessary if certain refresh rates are only available at certain resolutions.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) where the resolution should be changed.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+          <maml:name>Height</maml:name>
+          <maml:description>
+            <maml:para>Specifies the height of the resolution, meaning the second number in the common "1920 x 1080" format.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Width</maml:name>
+          <maml:description>
+            <maml:para>Specifies the width of the resolution, meaning the first number in the common "1920 x 1080" format.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayResolution</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>ChangeAspectRatio</maml:name>
+          <maml:description>
+            <maml:para>Fixes an issue where the aspect ratio is not changed when changing to a resolution with a different aspect ratio.
+Due to API limitations, no further changes can be made to a DisplayConfig after this parameter has been used, so this has to be used as a last step before applying it.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) where the resolution should be changed.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+          <maml:name>Height</maml:name>
+          <maml:description>
+            <maml:para>Specifies the height of the resolution, meaning the second number in the common "1920 x 1080" format.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Width</maml:name>
+          <maml:description>
+            <maml:para>Specifies the width of the resolution, meaning the first number in the common "1920 x 1080" format.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>AllowChanges</maml:name>
+        <maml:description>
+          <maml:para>Allows Windows to slightly adjust the mode (resolution and refresh rate) this can be necessary if certain refresh rates are only available at certain resolutions.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>ChangeAspectRatio</maml:name>
+        <maml:description>
+          <maml:para>Fixes an issue where the aspect ratio is not changed when changing to a resolution with a different aspect ratio.
+Due to API limitations, no further changes can be made to a DisplayConfig after this parameter has been used, so this has to be used as a last step before applying it.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayConfig</maml:name>
+        <maml:description>
+          <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display(s) where the resolution should be changed.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DontSave</maml:name>
+        <maml:description>
+          <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+        <maml:name>Height</maml:name>
+        <maml:description>
+          <maml:para>Specifies the height of the resolution, meaning the second number in the common "1920 x 1080" format.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Width</maml:name>
+        <maml:description>
+          <maml:para>Specifies the width of the resolution, meaning the first number in the common "1920 x 1080" format.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Set-DisplayResolution -DisplayId 3 -Width 1600 -Height 900</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Changes the resolution of display 3 to 1600 x 900.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-DisplayRotation</command:name>
+      <maml:description>
+        <maml:para>Rotates the image of a display so it matches the physical setup.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>DisplayRotation</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Rotates the image of a display so it matches the physical setup.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayRotation</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) that should be rotated.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Rotation</maml:name>
+          <maml:description>
+            <maml:para>The amount of rotation in degrees (counterclockwise) that the display(s) should be rotated.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayRotation</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayRotation</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) that should be rotated.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Rotation</maml:name>
+          <maml:description>
+            <maml:para>The amount of rotation in degrees (counterclockwise) that the display(s) should be rotated.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayRotation</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayConfig</maml:name>
+        <maml:description>
+          <maml:para>The displayConfig where this setting should be applied.
+See the help for `Get-DisplayConfig` for more info.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display(s) that should be rotated.
+DisplayIds in this module use a similar logic as the Windows Settings app to number the displays, but there's no guarantee that it will match on every system.
+Displays are sorted by the output port on the adapter with the following priority: Internal displays (laptops), PC connectors (DVI, Displayport), HDMI and others.
+When multiple displays use the same connector (eg. 2 DisplayPort monitors) Windows will assign an incrementing number for each instance, and this number is combined with the priority to determine the exact display order.
+The only way to change the displayId of a display is to move it to a different port on the graphics adapter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DontSave</maml:name>
+        <maml:description>
+          <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Rotation</maml:name>
+        <maml:description>
+          <maml:para>The amount of rotation in degrees (counterclockwise) that the display(s) should be rotated.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayRotation</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Set-DisplayRotation -DisplayId 3 -Rotation Rotate90</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Rotates the third display 90 degrees counterclockwise.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-DisplayScale</command:name>
+      <maml:description>
+        <maml:para>Changes the DPI for the specified display(s).</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>DisplayScale</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Changes the DPI for the specified display(s).</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayScale</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) where the DPI should be changed.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Scale</maml:name>
+          <maml:description>
+            <maml:para>The DPI scale to set.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DisplayScale</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>DisplayId</maml:name>
+          <maml:description>
+            <maml:para>The display(s) where the DPI should be changed.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Recommended</maml:name>
+          <maml:description>
+            <maml:para>Sets the DPI to whatever Windows recommends.
+The DPI recommendation by Windows depends on the screen size, resolution and expected viewing distance.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+        <maml:name>DisplayId</maml:name>
+        <maml:description>
+          <maml:para>The display(s) where the DPI should be changed.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32[]</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Recommended</maml:name>
+        <maml:description>
+          <maml:para>Sets the DPI to whatever Windows recommends.
+The DPI recommendation by Windows depends on the screen size, resolution and expected viewing distance.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Scale</maml:name>
+        <maml:description>
+          <maml:para>The DPI scale to set.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">System.UInt32</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Set-DisplayScale -DisplayId 1,2 -Scale 100</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Sets the DPI scale to 100 for displays 1 and 2.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Undo-DisplayConfigChanges</command:name>
+      <maml:description>
+        <maml:para>Reverts any temporary display settings by resetting the display settings to the ones saved in the configuration database.</maml:para>
+      </maml:description>
+      <command:verb>Undo</command:verb>
+      <command:noun>DisplayConfigChanges</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Reverts any temporary display settings by resetting the display settings to the ones saved in the configuration database. Temporary display settings can be set by using the `DontSave` parameter on supported commands. For a list of supported commands, see: `Get-Command -Module DisplayConfig -ParameterName DontSave`</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Undo-DisplayConfigChanges</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Undo-DisplayConfigChanges</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Reverts any temporary display settings by resetting the display settings to the ones saved in the configuration database.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Use-DisplayConfig</command:name>
+      <maml:description>
+        <maml:para>Applies the specified Display topology settings.</maml:para>
+      </maml:description>
+      <command:verb>Use</command:verb>
+      <command:noun>DisplayConfig</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Applies the specified Display topology settings.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Use-DisplayConfig</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>AllowChanges</maml:name>
+          <maml:description>
+            <maml:para>Allow Windows to make slight adjustments to the configuration (readjusting desktop positions, changing the refresh rate, etc.).
+If this is not set, and the configuration contains invalid data then an error will be thrown.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DisplayConfig</maml:name>
+          <maml:description>
+            <maml:para>The DisplayConfig to apply.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>DontSave</maml:name>
+          <maml:description>
+            <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>Flags</maml:name>
+          <maml:description>
+            <maml:para>Only for advanced users!
+You can read what each flag does, and how they interact here: https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setdisplayconfig#parameters</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.Native.Enums.SetDisplayConfigFlags</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+          <maml:name>UpdateAdapterIds</maml:name>
+          <maml:description>
+            <maml:para>Gets the current display adapter IDs and updates the display config to use those before applying the config.
+This is useful if the displayconfig has been imported from a file because Windows may have changed the IDs since the file was exported.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>AllowChanges</maml:name>
+        <maml:description>
+          <maml:para>Allow Windows to make slight adjustments to the configuration (readjusting desktop positions, changing the refresh rate, etc.).
+If this is not set, and the configuration contains invalid data then an error will be thrown.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DisplayConfig</maml:name>
+        <maml:description>
+          <maml:para>The DisplayConfig to apply.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">MartinGC94.DisplayConfig.API.DisplayConfig</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DontSave</maml:name>
+        <maml:description>
+          <maml:para>Skips saving this configuration change to the configuration database, allowing you to roll back the changes with: `Undo-DisplayConfigChanges`.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Flags</maml:name>
+        <maml:description>
+          <maml:para>Only for advanced users!
+You can read what each flag does, and how they interact here: https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setdisplayconfig#parameters</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">MartinGC94.DisplayConfig.Native.Enums.SetDisplayConfigFlags</command:parameterValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>UpdateAdapterIds</maml:name>
+        <maml:description>
+          <maml:para>Gets the current display adapter IDs and updates the display config to use those before applying the config.
+This is useful if the displayconfig has been imported from a file because Windows may have changed the IDs since the file was exported.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.Management.Automation.SwitchParameter</command:parameterValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>MartinGC94.DisplayConfig.API.DisplayConfig</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>PS C:\&gt; Import-Clixml $HOME\TvProfile.xml | Use-DisplayConfig -UpdateAdapterIds</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Imports a profile that was stored on the filesystem and applies it to the current configuration.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version</maml:linkText>
+        <command:uri />
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+</helpItems>

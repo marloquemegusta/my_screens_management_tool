@@ -1,0 +1,128 @@
+@{
+    RootModule             = "DisplayConfig.dll"
+    ModuleVersion          = '6.1.0'
+    CompatiblePSEditions   = @("Core", "Desktop")
+    GUID                   = '869da43f-8ec3-4ee1-8820-f531dbc455d6'
+    Author                 = 'MartinGC94'
+    CompanyName            = 'Unknown'
+    Copyright              = '(c) 2024 MartinGC94. All rights reserved.'
+    Description            = 'Manage Windows display settings like resolution, DPI scale, HDR and more.'
+    PowerShellVersion      = '5.1'
+    RequiredAssemblies     = if ($PSEdition -eq "Desktop") {"DisplayConfig.dll"} else {$null}
+    TypesToProcess         = @('DisplayConfigType.ps1xml')
+    FormatsToProcess       = @('DisplayConfigFormat.ps1xml')
+    FunctionsToExport      = @()
+    CmdletsToExport        = @('Copy-DisplaySource','Disable-DisplayAdvancedColor','Disable-Display','Disable-DisplayWCG','Enable-DisplayAdvancedColor','Enable-Display','Enable-DisplayWCG','Get-DisplayColorInfo','Get-DisplayConfig','Get-DisplayHDR','Get-DisplayInfo','Get-DisplayProfile','Get-DisplayScale','Set-DisplayColor','Set-DisplayHDR','Set-DisplayPosition','Set-DisplayPrimary','Set-DisplayProfile','Set-DisplayRefreshRate','Set-DisplayResolution','Set-DisplayRotation','Set-DisplayScale','Undo-DisplayConfigChanges','Use-DisplayConfig')
+    VariablesToExport      = @()
+    AliasesToExport        = @()
+    DscResourcesToExport   = @()
+    FileList               = @('DisplayConfig.deps.json','DisplayConfig.dll','DisplayConfig.psd1','DisplayConfigFormat.ps1xml','DisplayConfigType.ps1xml','en-US\DisplayConfig.dll-Help.xml')
+    PrivateData            = @{
+        PSData = @{
+             Tags         = @("Display", "Monitor", "Settings","Options","Configuration", "Resolution", "DPI", "Scale", "HDR", "Rotation")
+             ProjectUri   = 'https://github.com/MartinGC94/DisplayConfig'
+             ReleaseNotes = @'
+6.1.0:
+    Added new Set-DisplayColor command for managing various Advanced Color settings.
+        This is pretty much a "Set" version of "Get-DisplayColorInfo" intended to be used when importing settings previously exported with: "Get-DisplayColorInfo | Export-CliXml"
+    Updated Get-DisplayColorInfo and Get-DisplayScale
+        DisplayID is no longer a required parameter. If left out, the settings for each active display will be listed.
+        DisplayID now accepts pipeline input, allowing for simple filtering scenarios like: "Get-DisplayInfo | where {$_.Primary} | Get-DisplayColorInfo"
+        DisplayID is now included in the output so it's possible to know which display the info came from.
+    Updated Set-DisplayScale
+        DisplayId now accepts pipeline input, making it simple to reapply the scaling config from a previous setting export.
+        Added parameter alias "CurrentScale" for the "Scale" parameter to support pipeline input from the output generated with Get-DisplayScale.
+    Improved error messaging when a color/HDR command fails to do something.
+6.0.0:
+    Use new Windows 11 APIs for reading and setting advanced color settings.
+        This changes the properties returned by Get-DisplayColorInfo.
+    Added new Enable-DisplayWCG and Disable-DisplayWCG commands. These control the setting "Automatically manage color for apps".
+    Fixed error when calling Get-DisplayHDR -Global when the DirectXUserGlobalSettings registry property was missing.
+5.2.1:
+    Fixed issue where the EDID data would be null unless the UID assigned to the display was exactly 4 digits long.
+5.2.0:
+    Added new EdidData property to the output of Get-DisplayInfo which contains data read from the EDID stored in registry. The data includes: EdidVersion, Display serial number, display manufacture date.
+    Added DisplayConfig parameter to Get-DisplayInfo this can be used to more easily view the pending display data stored in a DisplayConfig before applying it.
+5.1.0:
+    Fixed an issue where changing the resolution with Set-DisplayResolution to one with a different aspect ratio did not properly change the aspect ratio, resulting in a stretched or squished image.
+        If the old behavior is still desired it can be applied with the DisplayConfig approach like so: Get-DisplayConfig | Set-DisplayResolution 1 800 600 | Use-DisplayConfig
+    Added new "ChangeAspectRatio" parameter to Set-DisplayResolution. This parameter applies the aforementioned fix, but is only necessary when working with a DisplayConfig.
+        If this parameter is used, no further changes can be made to the DisplayConfig so be sure to use it last before applying the config.
+5.0.0:
+    Made it so Set-DisplayPosition does not try to rearange cloned displays when specifying a specific position with the XPosition and YPosition parameters.
+        If a cloned display group needs to be moved, all displays needs to be specified in a displayconfig like this: Get-DisplayConfig | Set-DisplayPosition -DisplayId 1 -XPosition 2560 | Set-DisplayPosition -DisplayId 2 -XPosition 2560 | Use-DisplayConfig
+    Moved the DisplayConfig parameter definition for each command to the bottom so it shows up last in the tab completion.
+4.0.0:
+    Fix index out of bounds error when changing resolution, cloning a display or disabling a display on certain system configs.
+    Update Disable-Display so it restores the previous desktop layout instead of adjusting the current one when run by itself.
+        The old behavior is still used when a displayconfig is passed in, so if the old behavior is desired, one can run: Get-DisplayConfig | Disable-Display -DisplayId 1 | Use-DisplayConfig
+    Removed the DontSave parameter for Disable-Display as it cannot be used with the new API call.
+3.3.1:
+    Fix regression where Get-DisplayConfig wouldn't write to the output stream.
+3.3.0:
+    Added an explicit error when the API returns no paths (because it's in a headless environment), replacing the previous invalid parameter error.
+    Added recommended actions for when the API returns no paths and when the specified DisplayID was not found.
+3.2.2:
+    Fixed issue where very precise refresh rates could not be applied due to a conversion issue.
+3.2.1:
+    Fixed issue where very precise refresh rates could not be applied due to a conversion issue.
+3.2:
+    Updated the refresh rate and resolution argument completers to include the recommended refresh rate and resolution, as determined by Windows.
+    Updated the resolution argument completer to not list height values that would be invalid for the already specified width value and vice versa.
+    Made it so "Set-DisplayScale" with the "Recommended" switch explicitly set to false throws an error instead of unexpectedly setting the scaling to 100%
+    Fixed issue where inactive displays would not show up in the list of available displays if the max amount of active displays on the GPU had already been reached.
+3.1.0:
+    Added new "DisplayIdToDisable" parameter to "Enable-Display". This can be used to disable displays while enabling others.
+    Made "Enable-Display" more robust on certain system configs.
+3.0.2:
+    Fixed Set-DisplayResolution so it works with the recent virtual mode changes.
+3.0.1:
+    Published "Release" mode build rather than "Debug".
+3.0:
+    Made the module virtual mode aware which has the following effects:
+        Raises the minimum OS version to Windows 10.
+        Fixes displayId assignment when there are cloned displays across multiple display adapters.
+        Makes it possible to clone across multiple display adapters.
+    Simplified the parameter sets for "Set-DisplayPosition":
+        Removed the Config specific parameter sets.
+        Removed the "ApplyNow" parameter as it is no longer needed. If the DisplayConfig parameter is not specified, it will apply the changes immediately.
+        The "Position" parameter set is now the default and "XPosition" and "YPosition" are no longer mandatory, allowing adjustment of one without the other.
+    Fixed index out of bounds error when cloning a display while another display was disabled.
+    Fixed positioning error when disabling or cloning displays with different resolutions.
+    Added new switch parameter "AllowChanges" to Set-DisplayResolution. When this is set, Windows will make slight adjustments to the refresh rate or resolution if needed to apply the config.
+    Added new switch parameter "AsClone" to "Enable-Display". When this is set, the specified displays are enabled as needed and put into one clone group.
+        This allows Windows to determine the best clone source instead of manually specifying it with "Copy-DisplaySource" and it works with disabled displays.
+    Updated the displayId completer list item text and tooltip to include the connection type.
+    Updated "Use-DisplayConfig" so the "UpdateAdapterIds" parameter defaults to true for imported configs.
+2.0:
+    Made it so DisplayIds are grouped by display adapter (GPU) and then connection type. This makes the DisplayId assignments consistent on systems with multiple display adapters.
+    Fixed an issue where "Use-DisplayConfig -UpdateAdapterIds" would throw an error if there were unused adapters in the displayconfig.
+    Fixed an uncaught exception in Get-DisplayInfo when specifying an invalid DisplayId.
+    Added views to format DISPLAYCONFIG_PATH_SOURCE_INFO and DISPLAYCONFIG_PATH_TARGET_INFO objects.
+    Added recommended actions to the ErrorRecords for two common user errors for Set-DisplayRefreshRate and Use-DisplayConfig.
+    Updated completion tooltip for displays without a friendlyname from "Unknown" to "Unknown Display".
+1.1.1:
+    Published "Release" mode build rather than "Debug".
+1.1:
+    Added new "Get-DisplayHDR" and "Set-DisplayHDR" commands to manage HDR settings.
+    Fixed error handling in some commands where specifying an invalid DisplayId would cause a terminating error rather than a standard error.
+1.0.6:
+    Added new "UpdateAdapterIds" parameter to "Use-DisplayConfig". This parameter can be used to fix the error "The parameter is incorrect" when importing an exported display config.
+1.0.5:
+    Added an argumenter completer for the "SwapDisplays" parameter for "Set-DisplayPosition".
+1.0.4:
+    Added new "SwapDisplays" parameter to "Set-DisplayPosition". This parameter can be used to swap the desktop position of 2 different displays.
+1.0.3:
+    Added "Unknown" as a fallback to the display ID completer tooltip for displays where the friendlyname hasn't been set.
+1.0.2:
+    Fixed error where "Get-DisplayInfo" would sometimes throw an error, or find the wrong display.
+    Fixed a problem with the DeviceId completer would sometimes throw an internal error, and not return any completion results.
+    Fixed a problem where the tooltip in the DeviceID completer would sometimes show the wrong monitor name.
+1.0.1:
+    Fixed issue where a displayID did not always match the correct display.
+1.0:
+    Initial release.
+'@
+        }
+    }
+}

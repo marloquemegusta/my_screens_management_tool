@@ -1,0 +1,14 @@
+# Windows thumbnail and system caches
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs & temp files
+*.log
+*.tmp
+*.bak
+*.cfg
+
+# PowerShell transcription and history
+*.ps1xml.bak
