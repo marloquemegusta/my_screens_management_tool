@@ -49,19 +49,19 @@ if ($disabledGpus.Count -gt 0) {
     Start-Sleep -Seconds 5
 }
 
-# 1. Verify if all MEL40E0 / RTK1D1A EDID_OVERRIDE keys have the Safe Master EDID (Preferred Mode: 1024x768 @ 85Hz)
+# 1. Verify if all MEL40E0 / RTK1D1A EDID_OVERRIDE keys have the Master EDID (Preferred Mode: 1024x768 @ 85Hz + 110Hz Detailed Timing)
 [byte[]]$masterMelEdid = @(
     0,255,255,255,255,255,255,0,52,172,224,64,71,7,0,0,19,7,1,4,165,38,28,105,226,4,136,160,87,74,155,38,
     18,72,76,36,71,0,97,89,97,79,129,89,129,79,169,79,129,143,49,89,49,79,234,36,0,96,65,0,40,48,48,96,
-    19,0,104,14,17,0,0,30,200,50,0,168,81,192,39,48,64,128,19,0,104,14,17,0,0,30,0,0,0,252,0,84,70,87,
-    57,49,48,53,10,32,32,32,32,32,0,0,0,253,0,50,152,30,95,22,0,10,32,32,32,32,32,32,0,71
+    19,0,104,14,17,0,0,30,28,49,0,112,65,0,53,48,80,104,52,0,0,192,16,0,0,28,174,26,128,224,32,224,47,
+    16,48,64,52,0,160,120,0,0,0,28,200,50,0,168,81,192,39,48,64,128,19,0,104,14,17,0,0,30,0,87
 )
 
 $p20 = "HKLM:\SYSTEM\CurrentControlSet\Enum\DISPLAY\MEL40E0\4&ba29b99&0&UID20549\Device Parameters\EDID_OVERRIDE"
 $needsEdidSync = $false
 if (Test-Path $p20) {
     $curBytes = (Get-ItemProperty $p20 -ErrorAction SilentlyContinue)."0"
-    if (!$curBytes -or $curBytes[127] -ne 71) {
+    if (!$curBytes -or $curBytes[127] -ne 87) {
         $needsEdidSync = $true
     }
 } else {
@@ -70,10 +70,10 @@ if (Test-Path $p20) {
 
 if ($needsEdidSync) {
     if (!(Test-IsAdmin)) {
-        Write-Host "Sincronizando perfiles seguros de CRT (1024x768@85Hz modo nativo) en el registro..." -ForegroundColor Yellow
+        Write-Host "Sincronizando perfiles de CRT (1024x768@85Hz nativo + 110Hz + 640@150Hz) en el registro..." -ForegroundColor Yellow
         Invoke-SelfElevate
     }
-    Write-Host "Configurando modo preferido seguro (1024x768 @ 85Hz) en todos los puertos..." -ForegroundColor Cyan
+    Write-Host "Configurando modos y perfiles en todos los puertos del CRT..." -ForegroundColor Cyan
     $melKeys = Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Enum\DISPLAY\MEL40E0" -ErrorAction SilentlyContinue
     foreach ($k in $melKeys) {
         $edidPath = "$($k.PSPath)\Device Parameters\EDID_OVERRIDE"
@@ -241,16 +241,22 @@ try {
         Set-DisplayResolution -DisplayId $crt.DisplayId -Width $Width -Height $Height -ChangeAspectRatio | 
         Use-DisplayConfig -AllowChanges
 
-    # Step B: Apply exact refresh rate on the active resolution (with fallback to 75Hz)
+    # Step B: Apply exact refresh rate on the active resolution (with compatible fallback)
     Write-Host "Aplicando frecuencia de refresco: ${RefreshRate} Hz..." -ForegroundColor Cyan
     try {
         Set-DisplayRefreshRate -DisplayId $crt.DisplayId -RefreshRate $RefreshRate -AllowChanges
     } catch {
-        Write-Host "Nota: ${RefreshRate} Hz no disponible directamente, probando modo estandar 75 Hz..." -ForegroundColor Yellow
-        Set-DisplayRefreshRate -DisplayId $crt.DisplayId -RefreshRate 75 -AllowChanges -ErrorAction SilentlyContinue
+        Write-Host "Nota: ${RefreshRate} Hz no disponible directamente, probando modo compatible..." -ForegroundColor Yellow
+        if ($RefreshRate -eq 110) {
+            Set-DisplayRefreshRate -DisplayId $crt.DisplayId -RefreshRate 100 -AllowChanges -ErrorAction SilentlyContinue
+        } elseif ($RefreshRate -eq 150) {
+            Set-DisplayRefreshRate -DisplayId $crt.DisplayId -RefreshRate 120 -AllowChanges -ErrorAction SilentlyContinue
+        } else {
+            Set-DisplayRefreshRate -DisplayId $crt.DisplayId -RefreshRate 75 -AllowChanges -ErrorAction SilentlyContinue
+        }
     }
 
-    Write-Host "[OK] Listo: CRT en ${Width}x${Height} a la izquierda del Dell." -ForegroundColor Green
+    Write-Host "[OK] Listo: CRT en ${Width}x${Height} @ ${RefreshRate}Hz a la izquierda del Dell." -ForegroundColor Green
     Start-Sleep -Seconds 2
 } catch {
     if (!(Test-IsAdmin) -and !$Elevated) {

@@ -49,7 +49,7 @@ The script logic in `tools/Apply-CrtMode.ps1` explicitly expects and identifies:
    - `Solo_Portatil.bat`: Puts external monitors to sleep when stepping away.
    - `Restaurar_Monitores.bat`: Wakes all three displays and re-aligns the multi-screen desktop.
 4. **Resolution Switchers**:
-   - Batch scripts for switching CRT profiles (`1600x1200 @ 75Hz`, `1280x960 @ 85/75Hz`, `1024x768 @ 85/75Hz`, `640x480 @ 150/75Hz`) while keeping the desktop geometry pinned in place.
+   - Batch scripts for switching CRT profiles (`1600x1200 @ 75Hz`, `1280x960 @ 85/75Hz`, `1024x768 @ 110/85/75Hz`, `640x480 @ 150/75Hz`) while keeping the desktop geometry pinned in place.
 
 ---
 

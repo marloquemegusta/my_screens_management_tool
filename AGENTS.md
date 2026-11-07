@@ -27,8 +27,9 @@ El sistema controla una configuración de triple monitor heterogénea bajo Windo
 
 3. **Prevención de *"Frequency Out of Range"*:**
    - Al reactivar una pantalla, Windows consulta el **Descriptor 0 (Preferred Timing Mode)** del EDID.
-   - El Descriptor 0 debe ser siempre **`1024x768 @ 85 Hz`** (H-Scan: 68.68 kHz, PClk: 94.5 MHz).
-   - NUNCA fijar 110 Hz ni 1600x1200 como modo preferido o por defecto de encendido, ya que el barrido horizontal superior a 90 kHz excede la tolerancia del DAC o del chasis del monitor CRT y dispara la protección de frecuencia.
+   - El Descriptor 0 debe ser siempre **`1024x768 @ 85 Hz`** (H-Scan: 68.68 kHz, PClk: 94.5 MHz) como modo de encendido/arranque seguro.
+   - El Descriptor 1 define **`1024x768 @ 110 Hz`** (H-Scan: 90.32 kHz, PClk: 125.72 MHz) para cambio de perfil manual ultra-fluido una vez el monitor está encendido.
+   - NUNCA fijar 110 Hz ni 1600x1200 como modo preferido (Descriptor 0) en el arranque, ya que durante el apretón de manos inicial de Windows puede disparar la protección de frecuencia antes de inicializar la topología.
 
 4. **Prohibición de reinicio forzado de drivers:**
    - NUNCA llamar a `restart64.exe` con terminaciones de proceso forzadas (`Stop-Process`). Interrumpir el reinicio del driver de vídeo deja los adaptadores gráficos en estado `CM_PROB_DISABLED` en el Administrador de dispositivos.

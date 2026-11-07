@@ -11,9 +11,8 @@ A. ENCENDER / APAGAR PANTALLAS (MODO SUSPENSIÓN / AHORRO)
 
 1. Activar_CRT.bat
    - Enciende la CRT (si estaba en modo suspensión/desactivada en Windows).
-   - Inicia directamente en el modo nativo seguro: 1024 x 768 @ 85 Hz (o 75 Hz),
-     evitando cualquier error de "Frequency out of range".
-   - Coloca la CRT a la izquierda del Dell LCD automáticamente.
+   - Inicia en el modo seguro de arranque (1024x768 @ 85 Hz) y coloca la CRT
+     a la izquierda del Dell LCD automáticamente.
 
 2. Desactivar_CRT.bat
    - Corta completamente la señal de vídeo hacia el adaptador del CRT.
@@ -47,7 +46,8 @@ B. PERFILES DE RESOLUCIÓN Y HERCIOS (DOBLE CLIC)
 * Nota: Si la CRT estaba apagada, ejecutar cualquiera de estos perfiles la
   encenderá automáticamente y le aplicará la resolución deseada.
 
-- Perfil_1024x768_85Hz.bat   : Modo nativo recomendado (85 Hz súper estables).
+- Perfil_1024x768_110Hz.bat  : Modo ultra-fluido (110 Hz nativo).
+- Perfil_1024x768_85Hz.bat   : Modo recomendado (85 Hz súper estables).
 - Perfil_1024x768_75Hz.bat   : Modo 1024x768 estándar a 75 Hz.
 - Perfil_1280x960_85Hz.bat   : Modo 1280x960 a 85 Hz (gran nitidez).
 - Perfil_1280x960_75Hz.bat   : Modo 1280x960 estándar a 75 Hz.
